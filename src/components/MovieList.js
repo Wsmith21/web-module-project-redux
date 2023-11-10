@@ -1,10 +1,13 @@
 import React from 'react';
 
+import { Connect, connect } from 'react-redux';
 import MovieListItem from './MovieListItem';
 import MovieFooter from './MovieFooter';
+import { relativeTimeRounding } from 'moment';
 
 const MovieList = (props)=> {
-    const movies = [];
+
+    const {movies} = props;
 
     return (
         <div className="col">
@@ -30,5 +33,10 @@ const MovieList = (props)=> {
         </div>
     );
 }
+const mapStateToProps = (state) => {
+    return({
+        movies:state.movieReducer.movies
+    })
+}
 
-export default MovieList;
+export default connect(mapStateToProps) (MovieList);
